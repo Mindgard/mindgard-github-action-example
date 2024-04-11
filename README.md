@@ -1,2 +1,3 @@
 # github-action-example
-Example github action adding a mindgard check to an MLOps pipeline
+
+Example of how to add a github action that runs a mindgard test to an MLOps pipeline
