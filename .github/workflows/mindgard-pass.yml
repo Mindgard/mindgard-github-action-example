@@ -25,4 +25,4 @@ jobs:
         run: python -m pip install --upgrade mindgard
 
       - name: Run mindgard test
-        run: mindgard sandbox roberta_base_fintweets --risk-threshold 80
+        run: mindgard sandbox mistral --risk-threshold 90
