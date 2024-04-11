@@ -1,4 +1,4 @@
-name: Mindgard Security Test
+name: Mindgard Security Test example failure
 
 on:
   push:
