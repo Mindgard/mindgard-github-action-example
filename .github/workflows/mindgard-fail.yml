@@ -9,12 +9,13 @@ on:
       - main
 
 env:
+  # This environment variable needs to be present and valid for the "Run mindgard test" step to work
   MINDGARD_API_KEY: ${{ secrets.MINDGARD_API_KEY }}
 
 jobs:
   Mindgard-Security-Test:
     runs-on: ubuntu-latest
-
+    environment: basic # Used in this example to give this workflow access to Mindgard's internal API_KEY environment variable
     steps:
       - name: Set up Python 3.10
         uses: actions/setup-python@v3
