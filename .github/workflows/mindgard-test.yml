@@ -1,0 +1,36 @@
+name: Mindgard Security Test example
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  # This environment variable needs to be present and valid for the "Run mindgard test" step to work
+  MINDGARD_API_KEY: ${{ secrets.MINDGARD_API_KEY }}
+  MINDGARD_PROJECT_ID: ${{ secrets.MINDGARD_PROJECT_ID }}
+
+jobs:
+  Mindgard-Security-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.13"
+
+      - name: Install mindgard package
+        run: python -m pip install --upgrade mindgard
+
+      - name: Setup config file
+        shell: bash
+        run: |
+          mkdir -p .config
+          echo "${{ secrets.MINDGARD_CLI_CONFIG }}" | base64 -d > .config/mindgard-config.toml
+          chmod 600 .config/mindgard-config.toml
+
+      - name: Run mindgard test
+        run: mindgard test --config=.config/mindgard-config.toml --include PromptAlignment --project-id "$MINDGARD_PROJECT_ID"
