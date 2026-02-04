@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   # This environment variable needs to be present and valid for the "Run mindgard test" step to work
